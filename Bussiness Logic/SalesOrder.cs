@@ -176,6 +176,8 @@ namespace ProcessForce.Bussiness_Logic
                             oGeneralData.Child("CT_PF_IDT1").Item(Rc).SetProperty("U_ParentItemCode", itemcode);
                             oGeneralData.Child("CT_PF_IDT1").Item(Rc).SetProperty("U_Description", Rcode);
                             oGeneralData.Child("CT_PF_IDT1").Item(Rc).SetProperty("U_Status", "ACT");
+                            oGeneralData.Child("CT_PF_IDT1").Item(Rc).SetProperty("U_IsMrpDefault", "Y");
+                            oGeneralData.Child("CT_PF_IDT1").Item(Rc).SetProperty("U_Default", "Y");
 
                             if (isupdate)
                             {

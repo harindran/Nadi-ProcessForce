@@ -57,7 +57,7 @@ namespace ProcessForce.Bussiness_Logic
             {
                 string ss =((SAPbouiCOM.EditText)(mt.Columns.Item("U_DocEntry").Cells.Item(i).Specific)).Value;
 
-                string lstr = " SELECT cpo.\"U_ItemCode\" , cpo.\"U_Revision\" , cp1.\"U_DocNo\" ,cp1.\"U_LineNum\",cpo.\"U_RevisionName\"  FROM \"@CT_PF_OMOR\" cpo ";
+                string lstr = " SELECT cpo.\"U_ItemCode\" , cpo.\"U_Revision\" , cp1.\"U_DocNo\" ,cp1.\"U_LineNum\",cpo.\"U_Revision\",cpo.\"U_RevisionName\"  FROM \"@CT_PF_OMOR\" cpo ";
                 lstr += " INNER JOIN \"@CT_PF_MOR6\" cp1 ON cpo.\"DocEntry\" = cp1.\"DocEntry\" ";
                 lstr += "WHERE cpo.\"DocEntry\" = '" + ss + "'; ";
                 
@@ -68,19 +68,30 @@ namespace ProcessForce.Bussiness_Logic
 
                 if (rs.RecordCount>0)
                 {
+                  
+                    columnEdit(true,mt);
                     ((SAPbouiCOM.EditText)(mt.Columns.Item("U_OrderNo").Cells.Item(i).Specific)).Value = rs.Fields.Item("U_DocNo").Value.ToString();                    
                     ((SAPbouiCOM.EditText)(mt.Columns.Item("U_SubItemCode").Cells.Item(i).Specific)).Value = rs.Fields.Item("U_ItemCode").Value.ToString();
                     ((SAPbouiCOM.EditText)(mt.Columns.Item("U_Revision").Cells.Item(i).Specific)).Value = rs.Fields.Item("U_Revision").Value.ToString();
                     ((SAPbouiCOM.EditText)(mt.Columns.Item("U_OrderLineNo").Cells.Item(i).Specific)).Value = rs.Fields.Item("U_LineNum").Value.ToString();
-                  //  ((SAPbouiCOM.EditText)(mt.Columns.Item("U_RevisionName").Cells.Item(i).Specific)).Value = rs.Fields.Item("U_RevisionName").Value.ToString();
-               
+                     ((SAPbouiCOM.EditText)(mt.Columns.Item("U_Revision").Cells.Item(i).Specific)).Value = rs.Fields.Item("U_Revision").Value.ToString();
+                     ((SAPbouiCOM.EditText)(mt.Columns.Item("U_RevisionName").Cells.Item(i).Specific)).Value = rs.Fields.Item("U_RevisionName").Value.ToString();
+
+                    oForm.Items.Item("1470002179").Click();
+                    columnEdit(false,mt);
+
                 }
             }
-            oForm.Items.Item("1470002179").Click();
-            mt.Columns.Item("U_OrderNo").Editable = false;
-            mt.Columns.Item("U_SubItemCode").Editable = false;
-            mt.Columns.Item("U_Revision").Editable = false;
-            mt.Columns.Item("U_OrderLineNo").Editable = false;
+          
+        }
+
+
+        private void columnEdit(bool pblnenable,SAPbouiCOM.Matrix mt)
+        {
+            mt.Columns.Item("U_OrderNo").Editable = pblnenable;
+            mt.Columns.Item("U_SubItemCode").Editable = pblnenable;
+            mt.Columns.Item("U_Revision").Editable = pblnenable;
+            mt.Columns.Item("U_OrderLineNo").Editable = pblnenable;
         }
     }
 }
