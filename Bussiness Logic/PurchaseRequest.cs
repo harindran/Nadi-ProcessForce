@@ -57,8 +57,8 @@ namespace ProcessForce.Bussiness_Logic
             {
                 string ss =((SAPbouiCOM.EditText)(mt.Columns.Item("U_DocEntry").Cells.Item(i).Specific)).Value;
 
-                string lstr = " SELECT cpo.\"U_ItemCode\" , cpo.\"U_Revision\" , cp1.\"U_DocNo\" ,cp1.\"U_LineNum\",cpo.\"U_Revision\",cpo.\"U_RevisionName\"  FROM \"@CT_PF_OMOR\" cpo ";
-                lstr += " INNER JOIN \"@CT_PF_MOR6\" cp1 ON cpo.\"DocEntry\" = cp1.\"DocEntry\" ";
+                string lstr = " SELECT cpo.\"U_ItemCode\" , cpo.\"U_Revision\" ,COALESCE(cp1.\"U_DocNo\",'') as \"U_DocNo\" ,COALESCE(cp1.\"U_LineNum\",0) as \"U_LineNum\",cpo.\"U_Revision\",cpo.\"U_RevisionName\"  FROM \"@CT_PF_OMOR\" cpo ";
+                lstr += " LEFT JOIN \"@CT_PF_MOR6\" cp1 ON cpo.\"DocEntry\" = cp1.\"DocEntry\" ";
                 lstr += "WHERE cpo.\"DocEntry\" = '" + ss + "'; ";
                 
                 clsModule.objaddon.objglobalmethods.WriteErrorLog(ss);
@@ -92,6 +92,8 @@ namespace ProcessForce.Bussiness_Logic
             mt.Columns.Item("U_SubItemCode").Editable = pblnenable;
             mt.Columns.Item("U_Revision").Editable = pblnenable;
             mt.Columns.Item("U_OrderLineNo").Editable = pblnenable;
+            mt.Columns.Item("U_RevisionName").Editable = pblnenable;
+            mt.Columns.Item("U_Revision").Editable = pblnenable;
         }
     }
 }
