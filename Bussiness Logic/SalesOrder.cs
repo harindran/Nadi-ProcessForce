@@ -22,9 +22,8 @@ namespace ProcessForce.Bussiness_Logic
                     switch (pVal.EventType)
                     {
                         case SAPbouiCOM.BoEventTypes.et_FORM_LOAD:
-                            Create_Customize_Fields(oForm);
-                            break;
-
+                           // Create_Customize_Fields(oForm);
+                            break;                     
                     }
                 }
                 else
@@ -32,20 +31,7 @@ namespace ProcessForce.Bussiness_Logic
                     switch (pVal.EventType)
                     {
                         case SAPbouiCOM.BoEventTypes.et_CLICK:
-                            switch (pVal.FormType)
-                            {
-                                case 139:
-                                    if (pVal.ItemUID == "btnRev" && (oForm.Mode == SAPbouiCOM.BoFormMode.fm_OK_MODE || oForm.Mode == SAPbouiCOM.BoFormMode.fm_UPDATE_MODE))
-                                    {
-                                        UpdateRevisionLogic(oForm);
-                                        oForm.Mode = SAPbouiCOM.BoFormMode.fm_OK_MODE;
-                                        clsModule.objaddon.objapplication.Menus.Item("1304").Activate();
-                                        clsModule.objaddon.objapplication.StatusBar.SetText("Operation Compeletly successfully...", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Success);
-
-                                    }
-                                    break;
-                            }
-                          break;
+                            break;
                     }
                 }
             }
@@ -55,6 +41,50 @@ namespace ProcessForce.Bussiness_Logic
                 throw;
             }
         }
+
+
+
+        public void FormDataEvent(ref SAPbouiCOM.BusinessObjectInfo pVal, out bool BubbleEvent)
+        {
+            BubbleEvent = true;
+            try
+            {
+                SAPbouiCOM.Form oForm = clsModule.objaddon.objapplication.Forms.Item(pVal.FormUID);
+
+                if (!pVal.BeforeAction)
+                {
+                    switch (pVal.EventType)
+                    {
+                        case SAPbouiCOM.BoEventTypes.et_FORM_LOAD:
+                            // Create_Customize_Fields(oForm);
+                            break;
+
+                        case SAPbouiCOM.BoEventTypes.et_FORM_DATA_ADD:
+                            switch (pVal.FormTypeEx)
+                            {
+                                case "139":
+                                    if (oForm.Mode == SAPbouiCOM.BoFormMode.fm_ADD_MODE)
+                                    {
+                                        UpdateRevisionLogic(oForm);
+                                        oForm.Mode = SAPbouiCOM.BoFormMode.fm_OK_MODE;
+                                        clsModule.objaddon.objapplication.Menus.Item("1304").Activate();
+                                        clsModule.objaddon.objapplication.StatusBar.SetText("Operation Compeletly successfully...", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Success);
+
+                                    }
+                                    break;
+                            }
+                            break;
+
+                    }
+                }              
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
 
         private void Create_Customize_Fields(SAPbouiCOM.Form oForm)
         {

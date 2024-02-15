@@ -225,10 +225,7 @@ namespace Common.Common
                             case SAPbouiCOM.BoEventTypes.et_FORM_LOAD:
                                 switch (pVal.FormTypeEx)
                                 {
-                                    case "139":                                    
-                                        clsModule.objaddon.objglobalmethods.WriteErrorLog(pVal.EventType.ToString() + pVal.ActionSuccess + pVal.FormTypeEx);
-                                        objInvoice.Item_Event(FormUID, ref pVal, ref BubbleEvent);
-                                        break;
+                                   
                                     case "1470000200":
                                         clsModule.objaddon.objglobalmethods.WriteErrorLog(pVal.EventType.ToString() + pVal.ActionSuccess + pVal.FormTypeEx);
                                         objpurchase.Item_Event(FormUID, ref pVal, ref BubbleEvent);
@@ -246,7 +243,17 @@ namespace Common.Common
                                 {
                                     break;
                                 }
-                            
+                            case SAPbouiCOM.BoEventTypes.et_CLICK:
+                                switch (pVal.FormTypeEx)
+                                {
+                                    case "139":
+                                        clsModule.objaddon.objglobalmethods.WriteErrorLog(pVal.EventType.ToString() + pVal.ActionSuccess + pVal.FormTypeEx);
+                                        objInvoice.Item_Event(FormUID, ref pVal, ref BubbleEvent);
+                                        break;
+                                   
+                                }
+                                break;
+
                         }
                     }
 
@@ -286,15 +293,40 @@ namespace Common.Common
 
         #region FormDataEvent
 
-        private void FormDataEvent(ref SAPbouiCOM.BusinessObjectInfo BusinessObjectInfo, out bool BubbleEvent)
+        private void FormDataEvent(ref SAPbouiCOM.BusinessObjectInfo pVal, out bool BubbleEvent)
         {
             BubbleEvent = true;
             try
-            {               
+            {
+
+                if (!pVal.BeforeAction)
+                {
+
+                    {
+                        switch (pVal.EventType)
+                        {
+                    
+                            case SAPbouiCOM.BoEventTypes.et_FORM_DATA_ADD:
+                                switch (pVal.FormTypeEx)
+                                {
+                                    case "139":
+                                        clsModule.objaddon.objglobalmethods.WriteErrorLog(pVal.EventType.ToString() + pVal.ActionSuccess + pVal.FormTypeEx);
+                                        objInvoice.FormDataEvent(ref pVal, out BubbleEvent);
+                                        break;
+
+                                }
+                                break;
+
+                        }
+                    }
+
+                }
+           
+
             }
             catch (Exception ex)
             {
-               //throw ex;
+                return;
             }
         }
 
