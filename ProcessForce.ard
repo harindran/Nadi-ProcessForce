@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AddOnRegData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" SlientInstallation="No" SlientUpgrade="No" Partnernmsp="ATPL" SchemaVersion="3.0" Type="" MultipleVersion="false" OnDemand="" OnPremise="" ExtName="ProcessForceV3.2" ExtVersion="3.2" Contdata="www.altrockstech.com" Partner="Altrocks tech Pvt Ltd" DBType="HANA" ClientType="A">
+  <Validity>
+    <SBOCompatibility>
+      <Version From="100.120.01" To="100.210.08" />
+    </SBOCompatibility>
+  </Validity>
+  <Configuration>
+    <Repository>
+      <Properties />
+    </Repository>
+    <Deployment>
+      <Properties />
+    </Deployment>
+    <Assignment>
+      <Properties />
+    </Assignment>
+  </Configuration>
+  <Addons>
+    <Addon Name="" Group="" ForceFlag="" Visible="" AutoAssign="" SelfUpgrd="">
+      <x86 AddonExe="E:\Harindran\addon\Nadi-Processforce\ProceesForce\ProcessForce\ProcessForce\bin\Debug\ProcessForce.exe" AddonSig="">
+        <Installation>
+          <Files>
+            <File FileName="ProcessForce.b1s">
+              <Actions />
+            </File>
+            <File FileName="ProcessForce.exe">
+              <Actions />
+            </File>
+            <File FileName="ProcessForce.pdb">
+              <Actions />
+            </File>
+            <File FileName="SAPBusinessOneSDK.dll">
+              <Actions />
+            </File>
+            <File FileName="SBOAddonProject1.b1s">
+              <Actions />
+            </File>
+          </Files>
+        </Installation>
+        <Uninstallation>
+          <Files>
+            <File FileName="ProcessForce.b1s">
+              <Actions />
+            </File>
+            <File FileName="ProcessForce.exe">
+              <Actions />
+            </File>
+            <File FileName="ProcessForce.pdb">
+              <Actions />
+            </File>
+            <File FileName="SAPBusinessOneSDK.dll">
+              <Actions />
+            </File>
+            <File FileName="SBOAddonProject1.b1s">
+              <Actions />
+            </File>
+          </Files>
+        </Uninstallation>
+      </x86>
+      <x64 AddonExe="E:\Harindran\addon\Nadi-Processforce\ProceesForce\ProcessForce\ProcessForce\bin\Debug\ProcessForce.exe" AddonSig="">
+        <Installation>
+          <Files>
+            <File FileName="ProcessForce.b1s">
+              <Actions />
+            </File>
+            <File FileName="ProcessForce.exe">
+              <Actions />
+            </File>
+            <File FileName="ProcessForce.pdb">
+              <Actions />
+            </File>
+            <File FileName="SAPBusinessOneSDK.dll">
+              <Actions />
+            </File>
+            <File FileName="SBOAddonProject1.b1s">
+              <Actions />
+            </File>
+          </Files>
+        </Installation>
+        <Uninstallation>
+          <Files>
+            <File FileName="ProcessForce.b1s">
+              <Actions />
+            </File>
+            <File FileName="ProcessForce.exe">
+              <Actions />
+            </File>
+            <File FileName="ProcessForce.pdb">
+              <Actions />
+            </File>
+            <File FileName="SAPBusinessOneSDK.dll">
+              <Actions />
+            </File>
+            <File FileName="SBOAddonProject1.b1s">
+              <Actions />
+            </File>
+          </Files>
+        </Uninstallation>
+      </x64>
+    </Addon>
+  </Addons>
+  <XApps>
+    <XApp Name="" Path="" FileName="" />
+  </XApps>
+  <UDQs>
+    <UDQ udqname="">
+      <Hana FileName="" />
+    </UDQ>
+  </UDQs>
+</AddOnRegData>

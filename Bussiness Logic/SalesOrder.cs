@@ -199,6 +199,14 @@ namespace ProcessForce.Bussiness_Logic
                             clsModule.objaddon.objglobalmethods.WriteErrorLog(Rcode);
 
                             int Rc = oGeneralData.Child("CT_PF_IDT1").Count;
+
+                            for (int i = 0; i < Rc; i++)
+                            {
+                                oGeneralData.Child("CT_PF_IDT1").Item(i).SetProperty("U_IsMrpDefault", "N");
+                                oGeneralData.Child("CT_PF_IDT1").Item(i).SetProperty("U_Default", "N");
+
+                            }
+
                             oGeneralData.Child("CT_PF_IDT1").Add();
                             oGeneralData.Child("CT_PF_IDT1").Item(Rc).SetProperty("U_Code", Rcode);
                             oGeneralData.Child("CT_PF_IDT1").Item(Rc).SetProperty("U_Code", Rcode);
